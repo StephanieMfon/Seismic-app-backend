@@ -32,4 +32,4 @@ after the dependencies are installed, type `npm start` and visit the api from `h
 
 ### Author
 
-![Stephanie Okpo-Mfon](https://github.com/StephanieMfon)
+[Stephanie Okpo-Mfon](https://github.com/StephanieMfon)

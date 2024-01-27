@@ -1,0 +1,34 @@
+{
+  "name": "seismic-app-backend",
+  "version": "1.0.0",
+  "description": "This is built for project management",
+  "main": "app.js",
+  "scripts": {
+    "startDev": "nodemon app.js"
+  },
+  "keywords": [
+    "Project",
+    "Plan",
+    "Management",
+    "Data"
+  ],
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "joi": "^17.12.0",
+    "joi-objectid": "^4.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.1",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.8"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.1",
+    "nodemon": "^3.0.3"
+  }
+}
