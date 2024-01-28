@@ -1,16 +1,18 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { UnAuthorizedError } from "../utils/error.js";
+
 dotenv.config();
 
-function authMiddleWare(req, next) {
+function authMiddleWare(req, res, next) {
   const tokenArray = req.headers?.authorization?.split(" ");
   const tokenValue = tokenArray?.[1];
+  if (!tokenValue) {
+    throw new UnAuthorizedError("You must provide an authorization token.");
+  }
+  const jwt_secret = process.env.JWT_ACCESS_TOKEN;
+
   try {
-    if (!tokenValue) {
-      throw new UnAuthorizedError("You must provide an authorization token.");
-    }
-    const jwt_secret = process.env.JWT_ACCESS;
     const payload = jwt.verify(tokenValue, jwt_secret);
     req.user = payload;
     next();
