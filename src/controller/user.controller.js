@@ -1,9 +1,12 @@
-import { createUser, loginUser } from "../services/user.service.js";
+import {
+  createUserService,
+  loginUserService,
+} from "../services/user.service.js";
 import { newToken } from "../utils/jwtHandler.js";
 
 export default class UserController {
   static async signup(req, res) {
-    const newUser = await createUser(req.body);
+    const newUser = await createUserService(req.body);
 
     res.status(201).json({
       message: "User created successfully",
@@ -14,7 +17,7 @@ export default class UserController {
     });
   }
   static async login(req, res) {
-    const user = await loginUser(req.body);
+    const user = await loginUserService(req.body);
 
     res.status(200).json({
       message: "Login successfull",

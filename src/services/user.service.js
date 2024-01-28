@@ -7,13 +7,17 @@ import {
 import { ConflictError } from "../utils/error.js";
 import sendEmail from "../services/email.service.js";
 
-export const createUser = async (user) => {
-  const emailExists = await User.find({ email: user.email });
-  if (emailExists.length > 0)
-    throw new ConflictError("An account with this email already exists.");
+export const createUserService = async (user) => {
+  // Validate request object
   const { error } = createUserValidator.validate(user);
   if (error) throw error;
 
+  // Check if User mail exists
+  const emailExists = await User.find({ email: user.email });
+  if (emailExists.length > 0)
+    throw new ConflictError("An account with this email already exists.");
+
+  // Hash password with Bcrypt
   const saltRounds = 10;
   const hashedPassword = bcrypt.hashSync(user.password, saltRounds);
   const userBody = {
@@ -38,7 +42,7 @@ export const createUser = async (user) => {
   return newUserObject;
 };
 
-export const loginUser = async (userBody) => {
+export const loginUserService = async (userBody) => {
   const { error } = loginUserValidator.validate(userBody);
   if (error) throw error;
   if (!userBody.email)
