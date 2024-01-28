@@ -1,6 +1,8 @@
 import {
   createProjectService,
+  downloadProjectsCsvService,
   getProjectsService,
+  totalAmountByStateService,
 } from "../services/project.service.js";
 
 export default class ProjectsController {
@@ -18,7 +20,7 @@ export default class ProjectsController {
   static async getProjects(req, res) {
     const { projects, total } = await getProjectsService();
 
-    res.status(201).json({
+    res.status(200).json({
       message: "Project gotten successfully",
       status: "Success",
       data: {
@@ -26,5 +28,35 @@ export default class ProjectsController {
         projects,
       },
     });
+  }
+
+  static async groupByStatus(req, res) {
+    const projects = await countByStatusService();
+
+    res.status(200).json({
+      message: "Project gotten successfully",
+      status: "Success",
+      data: {
+        projects,
+      },
+    });
+  }
+
+  static async totalAmountByState(req, res) {
+    const projects = await totalAmountByStateService();
+
+    res.status(200).json({
+      message: "Project gotten successfully",
+      status: "Success",
+      data: {
+        projects,
+      },
+    });
+  }
+
+  static async downloadProjectsCsv(req, res) {
+    const projects = await downloadProjectsCsvService();
+
+    res.attachment("Projects.csv").send(projects);
   }
 }
