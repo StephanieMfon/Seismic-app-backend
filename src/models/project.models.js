@@ -6,6 +6,13 @@ const ProjectsSchema = new Schema(
       type: Types.ObjectId,
       ref: "Plan",
       required: true,
+      validate: {
+        validator: async function (value) {
+          const plan = await model("Plan").findById(value);
+          return plan !== null;
+        },
+        message: "The plan ID provided does not belong to a valid plan.",
+      },
     },
     planId: String,
     status: {
