@@ -35,9 +35,9 @@ app.get("/api", (req, res) => {
   res.send("Welcome to Seismic App");
 });
 
-app.use("/api/v1/user", userRouter);
-app.use("/api/v1/plan", planRouter);
-app.use("/api/v1/project", projectRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/plans", planRouter);
+app.use("/api/v1/projects", projectRouter);
 
 app.use(globalErrorHandler);
 
