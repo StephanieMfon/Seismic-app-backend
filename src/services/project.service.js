@@ -11,7 +11,7 @@ export const createProjectService = async (project) => {
 
 export const getProjectsService = async () => {
   const [projects, total] = await Promise.all([
-    Project.find().sort({ created_at: -1 }),
+    Project.find().sort({ createdAt: -1 }),
     Project.countDocuments(),
   ]);
   return { projects, total };
